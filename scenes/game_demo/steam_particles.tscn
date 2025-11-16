@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://rm26oxjkpqt4"]
+
+[sub_resource type="Gradient" id="Gradient_ltgbr"]
+offsets = PackedFloat32Array(0, 0.3398058, 0.6796116, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.92718446, 1, 1, 1, 0.77719873, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q42xf"]
+gradient = SubResource("Gradient_ltgbr")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Curve" id="Curve_ltgbr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q42xf"]
+curve = SubResource("Curve_ltgbr")
+
+[sub_resource type="Gradient" id="Gradient_q42xf"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.627451)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fsstd"]
+gradient = SubResource("Gradient_q42xf")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ndmp"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(16, 16, 1)
+emission_shape = 3
+emission_box_extents = Vector3(0.5, 0.5, 0.5)
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+damping_min = 2.0
+damping_max = 2.0
+scale_min = 0.25
+scale_max = 0.25
+color_initial_ramp = SubResource("GradientTexture1D_fsstd")
+alpha_curve = SubResource("CurveTexture_q42xf")
+
+[node name="SteamParticles" type="GPUParticles2D" unique_id=113752460]
+emitting = false
+amount = 16
+texture = SubResource("GradientTexture2D_q42xf")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_3ndmp")

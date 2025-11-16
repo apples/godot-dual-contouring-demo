@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://qirclxxjy68g"]
+
+[ext_resource type="Script" uid="uid://ov7xhhme3xfq" path="res://scenes/main_menu/main_menu.gd" id="1_fsom3"]
+
+[node name="MainMenu" type="Control" unique_id=193112064]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsom3")
+
+[node name="GameButton" type="Button" parent="." unique_id=1792878324]
+layout_mode = 0
+offset_left = 264.0
+offset_top = 201.0
+offset_right = 525.6774
+offset_bottom = 279.0
+text = "Game Demo"
+
+[node name="SandboxButton" type="Button" parent="." unique_id=1426468926]
+layout_mode = 0
+offset_left = 554.0
+offset_top = 396.0
+offset_right = 875.16125
+offset_bottom = 472.0
+text = "Sandbox/Debug"
+
+[connection signal="pressed" from="GameButton" to="." method="_on_game_button_pressed"]
+[connection signal="pressed" from="SandboxButton" to="." method="_on_sandbox_button_pressed"]

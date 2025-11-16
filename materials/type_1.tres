@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cqiy1ebiqw8o7"]
+
+[ext_resource type="Shader" uid="uid://x1nu5r2a6bgd" path="res://materials/type_1.gdshader" id="1_p3rma"]
+
+[sub_resource type="Gradient" id="Gradient_p3rma"]
+offsets = PackedFloat32Array(0, 0.355372, 0.575758, 0.606061, 0.652893, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.05, 0, 1, 1, 0.766667, 0, 1, 1, 0.893333, 0.8, 1, 1, 0.685021, 0, 1, 0.337838, 0.0168919, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g8rtl"]
+noise_type = 2
+frequency = 0.097
+fractal_type = 0
+cellular_distance_function = 1
+domain_warp_enabled = true
+domain_warp_amplitude = 7.355
+domain_warp_frequency = 0.015
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_jgthb"]
+width = 128
+height = 128
+depth = 16
+noise = SubResource("FastNoiseLite_g8rtl")
+color_ramp = SubResource("Gradient_p3rma")
+seamless = true
+seamless_blend_skirt = 0.2
+
+[resource]
+shader = ExtResource("1_p3rma")
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_jgthb")
+shader_parameter/noise_rotation = Basis(0.94, -0.005, -0.045, -0.06, 0.97, -0.08, -0.075, 0.665, 0.175)

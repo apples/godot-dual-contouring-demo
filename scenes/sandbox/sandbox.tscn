@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://mm2je5e5d76r"]
+
+[ext_resource type="Script" uid="uid://7gd75y8t6kus" path="res://scenes/sandbox/sandbox.gd" id="1_ypj6x"]
+[ext_resource type="Script" uid="uid://chh0ri02qmrv4" path="res://isolines/dual_contour_isolines_grid.gd" id="2_44b12"]
+[ext_resource type="Resource" uid="uid://c0772sqy2o6x0" path="res://alchemy_mixer.tres" id="3_hwrqe"]
+[ext_resource type="Material" uid="uid://cqiy1ebiqw8o7" path="res://materials/type_1.tres" id="4_igx0j"]
+[ext_resource type="Material" uid="uid://d21rq7vvpjicu" path="res://materials/type_2.tres" id="5_tctsc"]
+[ext_resource type="Material" uid="uid://b7jhj1hgu31c8" path="res://materials/type_3.tres" id="6_ai2o8"]
+
+[node name="Sandbox2" type="Node2D" unique_id=2021601151]
+script = ExtResource("1_ypj6x")
+
+[node name="DualContourIsolinesGrid" type="Node2D" parent="." unique_id=1896332377]
+scale = Vector2(16, 16)
+script = ExtResource("2_44b12")
+mixer = ExtResource("3_hwrqe")
+default_material = ExtResource("4_igx0j")
+materials = Dictionary[int, Material]({
+1: ExtResource("4_igx0j"),
+2: ExtResource("5_tctsc"),
+3: ExtResource("6_ai2o8")
+})
+debug_draw = true
+debug_draw_normals = true
+metadata/_custom_type_script = "uid://chh0ri02qmrv4"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1873588326]
+position = Vector2(64.22, 85.61)
+process_callback = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=672454845]
+
+[node name="TypeLabel" type="Label" parent="CanvasLayer" unique_id=1642149995]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Type 1"

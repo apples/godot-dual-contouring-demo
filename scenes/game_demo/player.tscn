@@ -1,0 +1,142 @@
+[gd_scene load_steps=19 format=3 uid="uid://csv4vhnkjn0jq"]
+
+[ext_resource type="Texture2D" uid="uid://cclibbh5xnv1u" path="res://scenes/game_demo/player.png" id="1_cywia"]
+[ext_resource type="Script" uid="uid://ckqedx6mav8lm" path="res://scenes/game_demo/player.gd" id="1_rljv4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_33sph"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hio8u"]
+atlas = ExtResource("1_cywia")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyeo5"]
+atlas = ExtResource("1_cywia")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qeotj"]
+atlas = ExtResource("1_cywia")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o27md"]
+atlas = ExtResource("1_cywia")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esbyl"]
+atlas = ExtResource("1_cywia")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ndmp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hio8u")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyeo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qeotj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o27md")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esbyl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpo70"]
+radius = 1.4142135
+
+[sub_resource type="Curve" id="Curve_rljv4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.116139, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w5hi0"]
+curve = SubResource("Curve_rljv4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rljv4"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 0.25, 1)
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 44.059998
+initial_velocity_max = 66.08
+gravity = Vector3(0, 0, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+scale_min = 3.0
+scale_max = 3.0
+color = Color(0.17, 0, 0, 1)
+alpha_curve = SubResource("CurveTexture_w5hi0")
+
+[sub_resource type="Curve" id="Curve_w5hi0"]
+_data = [Vector2(0, 0.82022476), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.4332106, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a7cqi"]
+curve = SubResource("Curve_w5hi0")
+
+[sub_resource type="Curve" id="Curve_mtrsa"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1g2gw"]
+curve = SubResource("Curve_mtrsa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w5hi0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(12, 12, 1)
+angular_velocity_min = -100.000015
+angular_velocity_max = 99.999985
+angular_velocity_curve = SubResource("CurveTexture_1g2gw")
+gravity = Vector3(0, 1, 0)
+scale_min = 3.0
+scale_max = 3.0
+alpha_curve = SubResource("CurveTexture_a7cqi")
+
+[node name="Player" type="CharacterBody2D" unique_id=1959963127]
+texture_filter = 1
+motion_mode = 1
+script = ExtResource("1_rljv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=848411690]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_33sph")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=75749802]
+sprite_frames = SubResource("SpriteFrames_3ndmp")
+animation = &"walk"
+autoplay = "idle"
+
+[node name="FootArea2D" type="Area2D" parent="." unique_id=681067833]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FootArea2D" unique_id=1499190253]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_tpo70")
+
+[node name="SmokeParticles" type="GPUParticles2D" parent="." unique_id=1999690023]
+position = Vector2(0, 9)
+emitting = false
+amount = 32
+lifetime = 0.5
+explosiveness = 0.1
+process_material = SubResource("ParticleProcessMaterial_rljv4")
+
+[node name="IceParticles" type="GPUParticles2D" parent="." unique_id=382476454]
+physics_interpolation_mode = 2
+process_material = SubResource("ParticleProcessMaterial_w5hi0")
+
+[connection signal="area_shape_entered" from="FootArea2D" to="." method="_on_foot_area_2d_area_shape_entered"]
+[connection signal="area_shape_exited" from="FootArea2D" to="." method="_on_foot_area_2d_area_shape_exited"]

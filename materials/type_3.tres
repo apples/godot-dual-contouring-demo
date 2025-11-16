@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://b7jhj1hgu31c8"]
+
+[ext_resource type="Texture2D" uid="uid://beymkqgit11oq" path="res://materials/type_3_albedo.png" id="1"]
+[ext_resource type="Shader" uid="uid://wo7smtt2udtc" path="res://materials/type_3.gdshader" id="1_5jj7q"]
+[ext_resource type="Texture2D" uid="uid://cj1hg6vgo4div" path="res://materials/type_3_normal.png" id="3"]
+
+[resource]
+shader = ExtResource("1_5jj7q")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("1")
+shader_parameter/texture_normal = ExtResource("3")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv_scale = Vector3(1, 1, 1)

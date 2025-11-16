@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://d21rq7vvpjicu"]
+
+[ext_resource type="Shader" uid="uid://cxpng52j0gi8i" path="res://materials/type_2.gdshader" id="1"]
+[ext_resource type="Texture2D" uid="uid://c0wpqe02oqcy" path="res://materials/type_2_albedo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bb3i2oxji1dwv" path="res://materials/type_2_normal.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://djptkhgj8kagb" path="res://materials/type_2_parallax.png" id="5"]
+
+[resource]
+shader = ExtResource("1")
+shader_parameter/texture_albedo = ExtResource("2")
+shader_parameter/texture_normal = ExtResource("3")
+shader_parameter/texture_parallax = ExtResource("5")
+shader_parameter/uv_scale = Vector3(1, 1, 1)
